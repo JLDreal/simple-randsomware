@@ -15,7 +15,7 @@ for paths, dirs, files in scandir.walk(folder):
 
 
 
-with open("C:/Users/jaksc/Downloads/gameduck/thekey.key", "rb") as thekey:
+with open("thekey.key", "rb") as thekey:
     secretkey = thekey.read()
 
 for file in file_list:
