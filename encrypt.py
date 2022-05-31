@@ -7,7 +7,6 @@ file_list = []
 
 
 for paths, dirs, files in scandir.walk(folder):
-#for (paths, dirs, files) in os.walk(folder):
     for file in files:
         if file.endswith("encrypt.py" or "decrypt.py" or "thekey.key"):
             continue
