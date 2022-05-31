@@ -1,23 +1,34 @@
 import os
 import scandir
 from cryptography.fernet import Fernet
-folder = os.path.expandvars("%userprofile%")+"/Pictures/Camera Roll" #last part changeable
+folder = os.path.expandvars("%userprofile%")+"/Pictures/Camera Roll"
 
 file_list = []
-
+i=0
 for paths, dirs, files in scandir.walk(folder):
     for file in files:
         if file.endswith("encrypt.py" or "decrypt.py" or "thekey.key"):
             continue
         else:
             file_list.append(os.path.join(paths, file))
-
-#weird win11 File thing idk
-if (folder+"\\desktop.ini") in file_list:
-    file_list.remove(folder+"\\desktop.ini")
-else:
-    print(file_list)
-#end of that
+#win11 ghostfilefilter
+while i <= len(file_list)-1:
+    file_path =""
+    file_path = file_list[i]
+    print(file_path)
+    print(i)
+    if file_path.endswith("ini"):
+        file_list.remove(file_list[i])
+    i=i+1
+#end of ghostfilefilter
+while i <= len(file_list)-1:
+    file_path =""
+    file_path = file_list[i]
+    print(file_path)
+    print(i)
+    if file_path.endswith("ini"):
+        file_list.remove(file_list[i])
+    i=i+1
 
 with open("thekey.key", "rb") as thekey:
     secretkey = thekey.read()
@@ -28,3 +39,4 @@ for file in file_list:
     contents_decrypted = Fernet(secretkey).decrypt(contents)
     with open(file, "wb") as thefile:
         thefile.write(contents_decrypted)
+
