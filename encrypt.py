@@ -16,7 +16,6 @@ for paths, dirs, files in scandir.walk(folder):
 
 #win11 ghostfilefilter
 while i <= len(file_list)-1:
-    file_path =""
     file_path = file_list[i]
     if file_path.endswith("ini"):
         file_list.remove(file_list[i])
